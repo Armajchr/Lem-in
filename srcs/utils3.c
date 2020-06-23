@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:34:46 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 16:18:54 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 15:09:45 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_paths(t_path *path)
 	i = 0;
 	while (i < path->max)
 	{
-		ft_printf(CYAN"path ="EOC);
+		ft_printf(CYAN"path %d="EOC, i);
 		tab = ft_strsplit(path->path[i], ' ');
 		j = 0;
 		while (tab[j])
@@ -72,7 +72,6 @@ t_lst	*next_room_path(t_lst *checked, t_nod *tmp2)
 	t_lst	*tmp;
 
 	tmp = checked->first;
-
 	while (ft_strcmp(tmp->name, tmp2->name) != 0)
 		tmp = tmp->next;
 	return (tmp);

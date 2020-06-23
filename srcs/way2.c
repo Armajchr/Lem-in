@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:34:38 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 16:10:37 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 16:41:04 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int		return_check(int l, t_nod *tmp, t_lst *tmp2)
 	return (check);
 }
 
+t_lst	*second_fathers_pos(t_lst *tmp2, t_nod *tmp, int i)
+{
+	while (ft_strcmp(tmp2->name, tmp->links[i]) != 0)
+		tmp2 = tmp2->next;
+	return (tmp2);
+}
+
+void	second_fathers_bis(int check, t_nod *tmp, t_lst *tmp2)
+{
+	if (check == 1)
+	{
+		tmp2->father[tmp2->k] = tmp->name;
+		tmp2->k++;
+	}
+}
+
 void	second_fathers(t_nod *nod, t_lst *checked)
 {
 	t_nod	*tmp;
@@ -44,18 +60,13 @@ void	second_fathers(t_nod *nod, t_lst *checked)
 	tmp2 = checked->first;
 	while (tmp)
 	{
-        i = 0;
+		i = 0;
 		while (i < tmp->j)
 		{
-			while (ft_strcmp(tmp2->name, tmp->links[i]) != 0)
-				tmp2 = tmp2->next;
+			tmp2 = second_fathers_pos(tmp2, tmp, i);
 			l = 0;
 			check = return_check(l, tmp, tmp2);
-			if (check == 1)
-			{
-				tmp2->father[tmp2->k] = tmp->name;
-				tmp2->k++;
-			}
+			second_fathers_bis(check, tmp, tmp2);
 			i++;
 			tmp2 = checked->first;
 		}

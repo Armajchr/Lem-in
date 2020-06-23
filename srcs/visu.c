@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 11:50:53 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 15:08:08 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:33:53 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_visu	init_src1_dst1(t_visu *visu)
 int		visu(t_nod *nod, t_path *path, t_room *room)
 {
 	t_visu		visu;
-	
+
 	if (room->rooms_nb > 30)
 	{
 		ft_printf(GREEN"le bar est plein\n"EOC);

@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:24:42 by tchivert          #+#    #+#             */
-/*   Updated: 2020/06/17 16:24:09 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:32:29 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,8 @@ void	print_res(t_path path, int ants)
 	t_way		*way[path.max];
 	t_way		ptr;
 	char		*ended;
-	int			count;
-
 
 	i = -1;
-	count = 0;
 	if (!(ended = malloc(sizeof(char) * ants + 1)))
 		return ;
 	while (++i < ants)
@@ -110,8 +107,6 @@ void	print_res(t_path path, int ants)
 	{
 		play_turn(&turn, &*way, &ptr, &ended);
 		ft_printf("\n");
-		count++;
 	}
 	free_res(&*way, &ended, turn.max);
-	//ft_printf("count = %d\n", count);
 }

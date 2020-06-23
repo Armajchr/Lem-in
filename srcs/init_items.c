@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 12:23:12 by armajchr          #+#    #+#             */
-/*   Updated: 2020/02/10 16:36:40 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:28:56 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_path	init_path(t_path *path)
 	path->len = 0;
 	path->max = 0;
 	path->k = 0;
-	
 	return (*path);
 }
 

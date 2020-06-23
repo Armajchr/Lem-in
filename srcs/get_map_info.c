@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:34:30 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/17 15:55:38 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:28:32 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int		get_name_xy(char *line, t_room *room, t_nod *nod)
 	nod->first = tmp;
 	room->tab = ft_strsplit(line, 32);
 	free(line);
-	if (room->tab[0] == NULL || room->tab[1] == NULL || room->tab[2] == NULL || room->tab[3] != NULL)
+	if (room->tab[0] == NULL || room->tab[1] == NULL || room->tab[2] == NULL
+			|| room->tab[3] != NULL)
 	{
 		ft_printf("error name et coord");
 		room->check = 2;

@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 12:06:35 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/17 14:19:49 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 14:31:24 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ void	parsing_links(t_room *room, t_nod *nod)
 	}
 }
 
-void	parsing_lem(t_room *room, t_nod *nod)
+void	parsing_lem(t_room *room, t_nod *nod, char *line)
 {
+	free(line);
 	if (room->check == 2)
 		return ;
 	parsing_name(room, nod);

@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:09:05 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 16:21:30 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 15:00:16 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	get_paths2(t_nod *nod, t_lst *checked, t_path *path2)
 	}
 }
 
-void	bfs4(t_nod *nod, t_lst *list, t_lst *checked, t_path *path, t_path *path2)
+void	bfs4(t_nod *nod, t_lst *list, t_lst *checked)
 {
 	t_nod	*tmp;
 	t_lst	*tmp2;
@@ -192,14 +192,4 @@ void	bfs4(t_nod *nod, t_lst *list, t_lst *checked, t_path *path, t_path *path2)
 		room = list->first->name;
 		tmp = get_room_position(nod, room);
 	}
-	second_fathers(nod, checked);
-	get_paths(nod, checked, path);
-	clear_paths(path);
-	ft_printf("\n");
-	//print_paths(path);
-	//ft_printf("\n");
-	get_paths2(nod, checked, path2);
-	clear_paths(path2);
-	//print_paths(path2);
-	//ft_printf("\n");
 }
