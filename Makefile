@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+         #
+#    By: weilin <weilin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 14:17:47 by armajchr          #+#    #+#              #
-#    Updated: 2020/06/23 16:09:03 by armajchr         ###   ########.fr        #
+#    Updated: 2020/06/24 00:41:13 by weilin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,10 @@ SDL2_TTF_PATH = $(FW_PATH)/$(SDL2_TTF)
 SDL2_MXR_PATH = $(FW_PATH)/$(SDL2_MXR)
 
 #Binaries
-CC		= /usr/bin/gcc - g -fsanitize=address
+# CC		= /usr/bin/gcc -g -fsanitize=address
+CC		= /usr/bin/gcc
 RM		= /bin/rm
-FLAG	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 NAME	= lem-in
 LIB1	= Libft/libft.a
@@ -73,7 +74,7 @@ mkdir:
 	@mkdir -p $(OBJ_PATH)
 	
 $(NAME): $(LIB1) $(LIB2) $(SRC) $(HEADER) Makefile
-	@gcc $(FLAGS) $(OBJ) -o $(NAME) $(SRC) $(LIB1) $(LIB2) -I $(INCLUDE)
+	clang -g $(FLAGS) $(OBJ) -o $(NAME) $(SRC) $(LIB1) $(LIB2) -I $(INCLUDE)
 	@echo "$(YELLOW)./$(NAME)     $(GREEN)ready   ✅ $(RESET)"
 	@install_name_tool -change @rpath/$(SDL2) $(SDL2_PATH) $(NAME)
 	@install_name_tool -change @rpath/$(SDL2_IMG) $(SDL2_IMG_PATH) $(NAME)

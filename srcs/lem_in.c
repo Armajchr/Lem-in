@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:00:12 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 16:41:15 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 00:53:47 by weilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,47 @@ int		ft_parserr(int step, t_room *room)
 		err = 1;
 	return (err > 0 ? 1 : 0);
 }
-char	*ft_strreset(char *s1, char *s2)
+
+char *savemap(char *map, char *line)
 {
-	char *tmp;
-	
-	if (!s1 && s2)
-	{
-		if ((tmp = ft_strdup(s2)) != NULL)
-			return(tmp);
-	}
-	if (!s1 || !s2)
+	static size_t total_size = 0;
+	char	*tmp;
+
+	total_size = total_size + ft_strlen(line) + 1;
+	tmp = map;
+	if (!(map = (char *)malloc(sizeof(char) * (total_size + 1))))
 		return (NULL);
-	ft_strdel(&s1);
-	if ((tmp = ft_strdup(s2)) != NULL)
-		return(tmp);
-	s1 = tmp;
-	return (s1);
+	*map = '\0';
+	if (tmp)
+		ft_strcpy(map, tmp);
+	ft_strcat(map, line);
+	if (tmp)
+		free(tmp);
+	map[total_size - 1] = '\n';
+	map[total_size] = '\0';
+	return (map);
+}
+
+void print_free(char *map, int ctl)
+{
+	(ctl != 2) ? ft_printf("%s", map) : 0;
+	ft_strdel(&map);
 }
 
 int		ft_parse(t_nod *nod, t_room *room)
 {
 	char	*line;
 	char	*map;
+	int		ret;
 
-	while (get_next_line(0, &line) && room->check != 2)
+	ret = 0 ;
+	map = NULL;
+	while ((ret = get_next_line(0, &line)) && room->check != 2)
+	// while (get_next_line(0, &line))
 	{
-		if (line[0] && !(map = ft_strreset(map,line)))
+		if (ret == -1 || !(map = savemap(map, line)))
 			return(0);
+		// if (line[0] && !(map = ft_strreset(map,line)))
 		if (!room->ants)
 			ft_antnum(line, room);
 		else if (line[0] == '#' || line[0] == 'L')
@@ -67,8 +81,8 @@ int		ft_parse(t_nod *nod, t_room *room)
 			room->check = 2;
 	}
 	room->check = (room->check == 2 || ft_parserr(3, room) ? 2 : 1);
+	print_free(map, room->check);
 	parsing_lem(room, nod, line);
-	room->check != 2 ? ft_printf("%s", map) : 0;
 	return (room->check == 2 ? 0 : 1);
 }
 
@@ -79,19 +93,12 @@ int		main(void)
 	t_lst	list;
 	t_path	path;
 	t_lst	checked;
-	char*	mapgnl;
+	// char*	mapgnl;
 
 	ft_bzero(&room, sizeof(t_room));
 	nod = init_stack(&nod);
-	if (!ft_parse(&nod, &room,) || room.check != 1 || ft_no_start(&nod) == 2) 
-	{
-		
-		return (0);
-	}
-	else
-	{
-		/* code */
-	}
+	if (!ft_parse(&nod, &room) || room.check != 1 || ft_no_start(&nod) == 2) 
+		return (write(2, "ERROR\n", 6) ? 1 : 0);
 	rev_lst(&nod);
 	list = init_list(&list);
 	checked = init_list(&checked);

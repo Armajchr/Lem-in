@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:34:30 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 14:28:32 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 23:45:17 by weilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ int		get_links1(t_room *room, char *line, t_nod *nod)
 {
 	t_nod *tmp;
 
-	room->tab = ft_strsplit(line, '-');
+	if (!(room->tab = ft_strsplit(line, '-')))
+		return (0);
 	tmp = nod->first;
 	if (link_error(room, line))
 		return (0);
 	free(line);
-	while (ft_strcmp(room->tab[0], tmp->name) != 0)
+	while (room->tab && tmp->name && ft_strcmp(room->tab[0], tmp->name))
 	{
 		tmp = tmp->next;
 		if (tmp == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:39:47 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 16:06:20 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/23 23:54:29 by weilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	paths_finder(t_nod *nod, t_lst *checked, t_path *path)
 {
     t_path  path2;
-    int     i;
-    int     j;
+    // int     i;
+    // int     j;
 
     path2 = init_path(&path2);
 	second_fathers(nod, checked);
