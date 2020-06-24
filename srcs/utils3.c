@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 15:34:46 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 15:09:45 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:09 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_paths(t_path *path)
 	while (i < path->max)
 	{
 		ft_printf(CYAN"path %d="EOC, i);
-		tab = ft_strsplit(path->path[i], ' ');
+		tab = ft_strsplit(path->roads[i], ' ');
 		j = 0;
 		while (tab[j])
 			j++;
@@ -87,7 +87,7 @@ t_lst	*get_paths3(t_path *path, t_nod *tmp2, t_lst *checked, t_nod *nod)
 		path->k++;
 		tmp = go_to_end(nod, checked);
 		if (path->k < path->max)
-			path->path[path->k] = tmp->name;
+			path->roads[path->k] = tmp->name;
 		else
 			tmp->weight = 1;
 	}

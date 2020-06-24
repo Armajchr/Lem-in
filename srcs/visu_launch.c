@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 11:41:18 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 13:49:12 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:09 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_visu	init_visu2(t_visu *visu, t_room *room, t_path *path)
 	i = 0;
 	while (i < path->k)
 	{
-		path->path[i] = ft_strrev(path->path[i]);
+		path->roads[i] = ft_strrev(path->roads[i]);
 		i++;
 	}
 	return (*visu);

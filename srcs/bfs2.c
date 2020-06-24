@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:09:05 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 15:00:16 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:19:08 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	get_paths(t_nod *nod, t_lst *checked, t_path *path)
 				path->max--;
 				i = 0;
 				tmp = go_to_end(nod, checked);
-				path->path[path->k] = tmp->name;
+				path->roads[path->k] = tmp->name;
 			}
 		}
 		else
@@ -154,7 +154,7 @@ void	get_paths2(t_nod *nod, t_lst *checked, t_path *path2)
 				path2->max--;
 				tmp = go_to_end(nod, checked);
 				i = tmp->k - 1;
-				path2->path[path2->k] = tmp->name;
+				path2->roads[path2->k] = tmp->name;
 			}
 		}
 		else

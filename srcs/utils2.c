@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 12:46:08 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/18 16:18:39 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:09 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ t_lst	*go_to_end(t_nod *nod, t_lst *checked)
 
 void	fill_path(t_path *path, t_nod *tmp2)
 {
-	path->path[path->k] = ft_strjoin(path->path[path->k], " ");
-	path->path[path->k] = ft_strjoin(path->path[path->k], tmp2->name);
+	path->roads[path->k] = ft_strjoin(path->roads[path->k], " ");
+	path->roads[path->k] = ft_strjoin(path->roads[path->k], tmp2->name);
 	path->len++;
 	tmp2->check = (tmp2->end == 1 || tmp2->start == 1) ? 0 : 1;
 }
@@ -79,7 +79,7 @@ void	fill_path(t_path *path, t_nod *tmp2)
 void	launch_path(t_path *path, t_lst *tmp)
 {
 	path->max = tmp->k;
-	if (!(path->path = (char**)malloc(sizeof(char*) * tmp->k)))
+	if (!(path->roads = (char**)malloc(sizeof(char*) * tmp->k)))
 		return ;
-	path->path[path->k] = tmp->name;
+	path->roads[path->k] = tmp->name;
 }

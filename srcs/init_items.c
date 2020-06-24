@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 12:23:12 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 14:28:56 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:39:03 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ t_path	init_path(t_path *path)
 	path->len = 0;
 	path->max = 0;
 	path->k = 0;
+	path->i = 0;
+	path->j = 0;
+	path->m = path->i + 1;
+	path->n = 0;
+	path->to_find = (char*)malloc(sizeof(char) * 10);
+	ft_bzero((void*)path->to_find, 10);
+	path->to_cmp = (char*)malloc(sizeof(char) * 10);
+	ft_bzero((void*)path->to_cmp, 10);
 	return (*path);
 }
 

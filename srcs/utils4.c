@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
@@ -45,10 +45,10 @@ void	clear_paths(t_path *path)
 		j = i + 1;
 		while (j < path->max)
 		{
-			if (ft_strcmp(path->path[i], path->path[j]) == 0
-					&& path->path[j][0] != '\0')
+			if (ft_strcmp(path->roads[i], path->roads[j]) == 0
+					&& path->roads[j][0] != '\0')
 			{
-				path->path[j] = "\0";
+				path->roads[j] = "\0";
 				count++;
 			}
 			j++;
