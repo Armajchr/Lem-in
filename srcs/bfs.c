@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:53:29 by armajchr          #+#    #+#             */
-/*   Updated: 2020/01/15 16:08:17 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:09 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	first_room(t_path *path, t_nod *nod, t_lst *tmp, int k)
 	tmp2 = nod->first;
 	if (tmp2->start == 1)
 	{
-		path->path[k] = ft_strjoin(tmp2->name, " ");
-		path->path[k] = ft_strjoin(path->path[k], tmp->name);
+		path->roads[k] = ft_strjoin(tmp2->name, " ");
+		path->roads[k] = ft_strjoin(path->roads[k], tmp->name);
 		return ;
 	}
 }

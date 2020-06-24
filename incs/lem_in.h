@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:46:36 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 16:09:30 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 16:15:26 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct		s_nod
 	int				start;
 	int				end;
 	int				j;
-	char			*links[100];
+	char			*links[1000];
 	int				check;
 	int				weight;
 }					t_nod;
@@ -60,7 +60,7 @@ typedef struct		s_lst
 	struct s_lst	*first;
 	struct s_lst	*next;
 	char			*name;
-	char			*father[100];
+	char			*father[1000];
 	int				k;
 	int				weight;
 	int				check;
@@ -68,7 +68,13 @@ typedef struct		s_lst
 
 typedef struct		s_path
 {
-	char			**path;
+	char			**roads;
+	char			*to_find;
+	char			*to_cmp;
+	int				i;
+	int				j;
+	int				m;
+	int				n;
 	int				len;
 	int				max;
 	int				k;
@@ -262,4 +268,8 @@ void				visu_exec(t_visu *visu, t_nod *nod,
 						t_path *path, t_room *room);
 t_visu				init_src1_dst1(t_visu *visu);
 t_visu				init_src2_dst2(t_visu *visu);*/
+void    get_to_find(t_path *path);
+void    get_to_cmp(t_path *path);
+void    clear_paths_cmp(t_path *path);
+void    final_paths_clear(t_path *path);
 #endif

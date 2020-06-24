@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:27:13 by armajchr          #+#    #+#             */
-/*   Updated: 2020/03/04 11:13:00 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:09 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_visu	load_move(t_visu *visu, t_nod *nod, t_path *path, t_room *room)
 	visu->end = 0;
 	i = 0;
 	path->len = 0;
-	way = ft_strsplit(path->path[visu->actual], 32);
+	way = ft_strsplit(path->roads[visu->actual], 32);
 	while (way[i])
 		i++;
 	path->len = i;

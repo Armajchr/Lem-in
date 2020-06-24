@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:24:42 by tchivert          #+#    #+#             */
-/*   Updated: 2020/06/23 14:32:29 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/24 14:18:39 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int		select_paths(t_path path, int ants)
 
 	i = -1;
 	cap = 0;
-	while (path.path[++i] && cap < ants && i < path.max)
+	while (path.roads[++i] && cap < ants && i < path.max)
 	{
 		j = -1;
 		prev_cap = cap;
 		cap = 0;
 		while (++j < i)
-			cap += count_cap(path.path[j]) - 2;
+			cap += count_cap(path.roads[j]) - 2;
 		if (cap > ants && (cap - ants > ants - prev_cap))
 			i--;
 	}
@@ -100,7 +100,7 @@ void	print_res(t_path path, int ants)
 	turn.end = 0;
 	turn.start = 1;
 	turn.max = select_paths(path, ants);
-	ft_setpath(path.path, turn.max, &*way);
+	ft_setpath(path.roads, turn.max, &*way);
 	way[0]->ant = 1;
 	turn.move = turn.max;
 	while (turn.end < ants)
