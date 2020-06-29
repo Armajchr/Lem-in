@@ -6,7 +6,7 @@
 #    By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 14:17:47 by armajchr          #+#    #+#              #
-#    Updated: 2020/06/24 12:45:46 by armajchr         ###   ########.fr        #
+#    Updated: 2020/06/29 11:39:13 by armajchr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,30 +38,32 @@ LIB2	= ft_printf/libftprintf.a
 
 HEADER	= incs/lem_in.h
 INCLUDE = incs/
-SRC		= srcs/ft_create_elem.c	\
-		srcs/init_items.c		\
-		srcs/utils.c			\
-		srcs/utils2.c			\
-		srcs/utils3.c			\
-		srcs/utils4.c			\
-		srcs/utils5.c			\
-		srcs/parser.c			\
-		srcs/parsing.c			\
-		srcs/lem_in.c			\
-		srcs/get_map_info.c		\
-		srcs/bfs.c				\
-		srcs/bfs2.c				\
-		srcs/way2.c				\
-		srcs/solve.c			\
-		srcs/solve_utils.c		\
+
+SRC		= ft_create_elem.c	\
+		init_items.c		\
+		utils.c			\
+		utils2.c			\
+		utils3.c			\
+		utils4.c			\
+		utils5.c			\
+		utils6.c			\
+		parser.c			\
+		parsing.c			\
+		lem_in.c			\
+		get_map_info.c		\
+		bfs.c				\
+		bfs2.c				\
+		way2.c				\
+		solve.c			\
+		solve_utils.c		\
 		#srcs/visu.c				\
 		srcs/visu_launch.c		\
 		srcs/visu_render.c		\
 		srcs/visu_move.c		\
 		srcs/visu_load.c
 
-OBJ_PATH = ./obj
-OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_PATH = obj
+OBJ_NAME = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 DEP_NAME = $(SRC_NAME:.c=.d)
@@ -73,8 +75,8 @@ all: mkdir $(NAME)
 mkdir: 
 	@mkdir -p $(OBJ_PATH)
 	
-$(NAME): $(LIB1) $(LIB2) $(SRC) $(HEADER) Makefile
-	clang -g $(FLAGS) $(OBJ) -o $(NAME) $(SRC) $(LIB1) $(LIB2) -I $(INCLUDE)
+$(NAME): $(LIB1) $(LIB2) $(OBJ) $(HEADER) Makefile
+	clang -g $(FLAGS) -o $(NAME) $(OBJ) $(LIB1) $(LIB2) -I $(INCLUDE)
 	@echo "$(YELLOW)./$(NAME)     $(GREEN)ready   ✅ $(RESET)"
 	@install_name_tool -change @rpath/$(SDL2) $(SDL2_PATH) $(NAME)
 	@install_name_tool -change @rpath/$(SDL2_IMG) $(SDL2_IMG_PATH) $(NAME)
@@ -83,15 +85,17 @@ $(NAME): $(LIB1) $(LIB2) $(SRC) $(HEADER) Makefile
 
 -include $(DEP)
 
-$(OBJ_PATH)/%.o : ./srcs/%.c Makefile $(HEADER)
-	@gcc $(FLAGS) -I Libft -I ft_printf -I ./incs -MMD -MP -c $< -o $@ -F $(FW_PATH)
+$(OBJ_PATH)/%.o : ./srcs/%.c $(INCLUDE) $(HEADER)
+	gcc $(FLAGS) -I Libft -I ft_printf -I ./incs -MMD -MP -c $< -o $@ -F $(FW_PATH)
 
+$(LIB1): $(LIB2) force
+	make -C Libft
 
-$(LIB1): $(LIB2)
-	@make -C Libft
+$(LIB2): force
+	make -C ft_printf
 
-$(LIB2):
-	@make -C ft_printf
+force:
+	@true
 
 clean:
 	@rm -f $(OBJ)

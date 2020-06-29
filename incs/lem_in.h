@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:46:36 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/24 16:15:26 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/29 12:03:00 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct		s_path
 	char			**roads;
 	char			*to_find;
 	char			*to_cmp;
+	char			*start;
 	int				i;
 	int				j;
 	int				m;
@@ -271,5 +272,9 @@ t_visu				init_src2_dst2(t_visu *visu);*/
 void    get_to_find(t_path *path);
 void    get_to_cmp(t_path *path);
 void    clear_paths_cmp(t_path *path);
-void    final_paths_clear(t_path *path);
+void    final_paths_clear(t_path *path, t_nod *nod);
+void    get_start_str(t_path *path, t_nod *nod);
+void    cpy_path(t_path *path, t_path *path2);
+void    to_cmp_pos(t_path *path);
+void	reset_pos(t_path *path);
 #endif
