@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 11:33:01 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/29 12:07:40 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/06/30 14:17:46 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,20 @@ void	cpy_path(t_path *path, t_path *path2)
 	int		j;
 	char	**tmp;
 
-	i = 0;
+	i = -1;
 	tmp = path->roads;
-	path->roads = (char **)malloc(sizeof(char *) * (path->k + path2->k));
-	while (i < path->k)
-	{
+	if (!(path->roads = (char **)malloc(sizeof(char *) * 
+		(path->k + path2->k) + 1)))
+		return ;
+	while (++i < path->k)
 		path->roads[i] = tmp[i];
-		i++;
-	}
 	free(tmp);
-	j = 0;
 	j = 0;
 	while (j < path2->k)
 	{
-		path->roads[i] = (char*)malloc(sizeof(char) *
-				(ft_strlen(path2->roads[j]) + 1));
+		if (!(path->roads[i] = (char*)malloc(sizeof(char) *
+				(ft_strlen(path2->roads[j])))))
+			return ;
 		path->roads[i] = path2->roads[j];
 		path->max++;
 		i++;
@@ -78,8 +77,10 @@ void	reset_pos(t_path *path)
 {
 	path->i = 0;
 	path->j = 0;
-	path->m = path->i + 1;
+	path->m = 1;
 	path->n = 0;
+	get_to_find(path);
+	get_to_cmp(path);
 }
 
 void	get_to_find(t_path *path)
@@ -92,6 +93,7 @@ void	get_to_find(t_path *path)
 	if (path->j >= (int)ft_strlen(path->roads[path->i]))
 	{
 		path->i++;
+		path->m = path->i + 1;
 		path->j = 0;
 	}
 	while (path->roads[path->i][path->j] != ' ')

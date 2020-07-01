@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:34:30 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/23 23:45:17 by weilin           ###   ########.fr       */
+/*   Updated: 2020/07/01 12:21:03 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		get_name_xy(char *line, t_room *room, t_nod *nod)
 	if (room->tab[0] == NULL || room->tab[1] == NULL || room->tab[2] == NULL
 			|| room->tab[3] != NULL)
 	{
-		ft_printf("error name et coord");
 		room->check = 2;
 		return (0);
 	}
@@ -47,6 +46,10 @@ int		get_name_xy(char *line, t_room *room, t_nod *nod)
 	tmp->name = room->tab[0];
 	tmp->x = ft_atoi(room->tab[1]);
 	tmp->y = ft_atoi(room->tab[2]);
+	if (tmp->x < 0 || tmp->y < 0)
+		room->check = 2;
+	if ((tmp->x > 2147483647) || (tmp->y > 2147483647))
+		room->check = 2;
 	tmp->j = 0;
 	room->rooms = 1;
 	check_room_startend(tmp, room);
@@ -80,7 +83,6 @@ int		get_links1(t_room *room, char *line, t_nod *nod)
 		tmp = tmp->next;
 		if (tmp == NULL)
 		{
-			ft_printf("error link1");
 			room->check = 2;
 			return (0);
 		}
@@ -106,7 +108,6 @@ int		get_links2(t_room *room, t_nod *nod)
 		tmp = tmp->next;
 		if (tmp == NULL)
 		{
-			ft_printf("error link 2");
 			room->check = 2;
 			return (0);
 		}

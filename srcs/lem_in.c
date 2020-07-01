@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: weilin <weilin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:00:12 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/24 00:53:47 by weilin           ###   ########.fr       */
+/*   Updated: 2020/07/01 15:29:40 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ int		ft_parse(t_nod *nod, t_room *room)
 			room->check = 2;
 	}
 	room->check = (room->check == 2 || ft_parserr(3, room) ? 2 : 1);
-	print_free(map, room->check);
+	room->check = ft_no_start(nod, room);
+	room->check = ft_no_end(nod, room);
+	room->check = ft_no_tube(nod, room);
 	parsing_lem(room, nod, line);
+	print_free(map, room->check);
 	return (room->check == 2 ? 0 : 1);
 }
 
@@ -93,13 +96,13 @@ int		main(void)
 	t_lst	list;
 	t_path	path;
 	t_lst	checked;
-	// char*	mapgnl;
 
 	ft_bzero(&room, sizeof(t_room));
 	nod = init_stack(&nod);
-	if (!ft_parse(&nod, &room) || room.check != 1 || ft_no_start(&nod) == 2) 
+	if (!ft_parse(&nod, &room) || room.check != 1 || ft_no_start(&nod, &room) == 2) 
 		return (write(2, "ERROR\n", 6) ? 1 : 0);
 	rev_lst(&nod);
+	//print_info(&nod);
 	list = init_list(&list);
 	checked = init_list(&checked);
 	path = init_path(&path);

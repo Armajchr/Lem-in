@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 12:09:05 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/24 14:19:08 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:41:30 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	get_paths(t_nod *nod, t_lst *checked, t_path *path)
 	if (tmp3->end != 1)
 	{
 		path->k = -1;
-		ft_printf("\nlemin: error: no path");
+		ft_printf("\nERROR\n");
 		return ;
 	}
 	i = 0;
@@ -138,7 +138,7 @@ void	get_paths2(t_nod *nod, t_lst *checked, t_path *path2)
 	if (tmp3->end != 1)
 	{
 		path2->k = -1;
-		ft_printf("lemin: error: no path");
+		ft_printf("ERROR");
 		return ;
 	}
 	i = tmp->k - 1;

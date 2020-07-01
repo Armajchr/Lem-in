@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:46:36 by armajchr          #+#    #+#             */
-/*   Updated: 2020/06/29 12:03:00 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/01 15:41:32 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct		s_room
 	int				len_path;
 	int				rooms_nb;
 	int				links_nb;
+	int				start;
+	int				end;
 }					t_room;
 
 typedef struct		s_nod
@@ -185,7 +187,7 @@ void				parsing_xy(t_room *room, t_nod *nod);
 void				parsing_links(t_room *room, t_nod *nod);
 void				ft_sharp(char *line, t_room *room);
 void				ft_antnum(char *line, t_room *room);
-int					ft_no_start(t_nod *nod);
+int					ft_no_start(t_nod *nod, t_room *room);
 void				get_fathers(t_lst *list, t_nod *nod,
 						t_lst *checked, t_lst *tmp2);
 int					search_fathers(t_lst *list,
@@ -277,4 +279,7 @@ void    get_start_str(t_path *path, t_nod *nod);
 void    cpy_path(t_path *path, t_path *path2);
 void    to_cmp_pos(t_path *path);
 void	reset_pos(t_path *path);
+int		ft_no_end(t_nod *nod, t_room *room);
+int		ft_no_tube(t_nod *nod, t_room *room);
+void    ft_sort_path(t_path *path);
 #endif

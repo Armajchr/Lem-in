@@ -6,7 +6,7 @@
 #    By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 14:17:47 by armajchr          #+#    #+#              #
-#    Updated: 2020/06/29 11:39:13 by armajchr         ###   ########.fr        #
+#    Updated: 2020/07/01 12:40:41 by armajchr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SDL2_MXR_PATH = $(FW_PATH)/$(SDL2_MXR)
 
 #Binaries
 # CC		= /usr/bin/gcc -g -fsanitize=address
-CC		= /usr/bin/gcc
+CC		= /usr/bin/gcc -g3
 RM		= /bin/rm
 FLAGS	= -Wall -Wextra -Werror
 
@@ -56,6 +56,7 @@ SRC		= ft_create_elem.c	\
 		way2.c				\
 		solve.c			\
 		solve_utils.c		\
+		dispatch.c			\
 		#srcs/visu.c				\
 		srcs/visu_launch.c		\
 		srcs/visu_render.c		\
@@ -76,7 +77,7 @@ mkdir:
 	@mkdir -p $(OBJ_PATH)
 	
 $(NAME): $(LIB1) $(LIB2) $(OBJ) $(HEADER) Makefile
-	clang -g $(FLAGS) -o $(NAME) $(OBJ) $(LIB1) $(LIB2) -I $(INCLUDE)
+	clang -g3 $(FLAGS) -o $(NAME) $(OBJ) $(LIB1) $(LIB2) -I $(INCLUDE)
 	@echo "$(YELLOW)./$(NAME)     $(GREEN)ready   ✅ $(RESET)"
 	@install_name_tool -change @rpath/$(SDL2) $(SDL2_PATH) $(NAME)
 	@install_name_tool -change @rpath/$(SDL2_IMG) $(SDL2_IMG_PATH) $(NAME)
@@ -86,7 +87,7 @@ $(NAME): $(LIB1) $(LIB2) $(OBJ) $(HEADER) Makefile
 -include $(DEP)
 
 $(OBJ_PATH)/%.o : ./srcs/%.c $(INCLUDE) $(HEADER)
-	gcc $(FLAGS) -I Libft -I ft_printf -I ./incs -MMD -MP -c $< -o $@ -F $(FW_PATH)
+	gcc -g3 $(FLAGS) -I Libft -I ft_printf -I ./incs -MMD -MP -c $< -o $@ -F $(FW_PATH)
 
 $(LIB1): $(LIB2) force
 	make -C Libft
