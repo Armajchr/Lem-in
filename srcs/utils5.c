@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 14:39:47 by armajchr          #+#    #+#             */
-/*   Updated: 2020/07/01 15:30:31 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/02 14:34:14 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	final_cleaning(t_path *path)
 
 void	final_paths_clear(t_path *path, t_nod *nod)
 {
+	if (count_cap(path->roads[path->i]) == 2)
+		return ;
 	get_start_str(path, nod);
 	path->m = path->i + 1;
 	while (path->i < (path->max - 1)
@@ -134,17 +136,15 @@ void	paths_finder(t_nod *nod, t_lst *checked, t_path *path)
 	second_fathers(nod, checked);
 	get_paths(nod, checked, path);
 	clear_paths(path);
-	print_paths(path);
 	path->k != -1 ? get_paths2(nod, checked, &path2) : 0;
 	path2.k != -1 ? clear_paths(&path2) : 0;
-	print_paths(&path2);
 	path->k != -1  && path2.k != -1 ? cpy_path(path, &path2) : 0;
-	if (path->k != -1  && path2.k != -1)
+	if (path->k != -1)
 	{
 		clear_paths(path);
-		final_paths_clear(path, nod);
+		final_paths_clear(path, nod);		
 		ft_sort_path(path);
-		print_paths(path);
+		ft_sort_path2(path);
 		ft_printf("\n");
 	}
 }

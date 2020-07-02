@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:24:42 by tchivert          #+#    #+#             */
-/*   Updated: 2020/07/01 15:23:22 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/02 11:59:51 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	print_res(t_path path, int ants)
 	turn.ants = ants;
 	turn.end = 0;
 	turn.start = 1;
-	turn.max = select_paths(path, ants) + 2;
+	turn.max = select_paths(path, ants);
 	ft_setpath(path.roads, turn.max, &*way);
 	way[0]->ant = 1;
 	turn.move = turn.max;

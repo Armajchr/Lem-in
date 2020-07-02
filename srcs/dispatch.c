@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 12:31:36 by armajchr          #+#    #+#             */
-/*   Updated: 2020/07/01 12:45:04 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/02 14:33:55 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,33 @@ void    ft_sort_path(t_path *path)
         i++;
         j = i + 1;
     }
+}
+
+void    ft_sort_path2(t_path *path)
+{
+    int		i;
+	int		j;
+	char	**tmp;
+
+	i = 0;
+	tmp = path->roads;
+	if (!(path->roads = (char **)malloc(sizeof(char *) * 
+		(path->max) + 1)))
+		return ;
+    i = 0;
+    j = 0;
+	while (i < path->max)
+    {
+
+        if (tmp[i][0] == '\0')
+            i++;
+        else
+        {
+		    path->roads[j] = tmp[i];
+            i++;
+            j++;
+        }
+    }
+    path->max = j;
+	free(tmp);
 }

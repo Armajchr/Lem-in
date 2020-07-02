@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:00:12 by armajchr          #+#    #+#             */
-/*   Updated: 2020/07/01 15:29:40 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/02 12:35:32 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int		main(void)
 	path = init_path(&path);
 	(room.check == 1) ? bfs4(&nod, &list, &checked) : 0;
 	paths_finder(&nod, &checked, &path);
+	//print_paths(&path);
 	(path.k == -1) ? 0 : print_res(path, room.ants);
 	return (0);
 }

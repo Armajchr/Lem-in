@@ -6,7 +6,7 @@
 /*   By: armajchr <armajchr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:46:36 by armajchr          #+#    #+#             */
-/*   Updated: 2020/07/01 15:41:32 by armajchr         ###   ########.fr       */
+/*   Updated: 2020/07/02 13:52:24 by armajchr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,4 +282,6 @@ void	reset_pos(t_path *path);
 int		ft_no_end(t_nod *nod, t_room *room);
 int		ft_no_tube(t_nod *nod, t_room *room);
 void    ft_sort_path(t_path *path);
+void	clear_paths2(t_path *path);
+void    ft_sort_path2(t_path *path);
 #endif
